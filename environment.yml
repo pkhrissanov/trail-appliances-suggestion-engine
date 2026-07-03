@@ -1,0 +1,12 @@
+name: trail-suggestion-engine
+channels:
+  - defaults
+dependencies:
+  - python=3.12
+  - pandas
+  - ipykernel
+  - jupyter
+  - scikit-learn
+  - numpy
+  - matplotlib
+prefix: /home/peter/miniconda3/envs/trail-suggestion-engine
