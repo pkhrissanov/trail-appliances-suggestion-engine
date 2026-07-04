@@ -14,6 +14,7 @@ env/
 # Data
 data/raw/
 data/processed/
+.~lock.ranges.csv#
 
 # OS / editor
 .DS_Store
