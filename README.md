@@ -1,192 +1,171 @@
+# Appliance Recommendation Engine
 
-# Trail Appliance Recommendation Engine
+A machine learning project exploring different approaches to appliance recommendation systems.
 
-A content-based recommendation engine for home appliances built in Python.
-
-This project explores how machine learning and data science can be used to recommend similar appliances based on product specifications, pricing, brand positioning, and features.
-The dataset is generated synthetically using Faker and Pythons random library, 
-allowing the recommendation system to be developed without relying on proprietary retail data.
-I was also unsure about web scraping, as Trail Appliances robots.txt techinically says scraping is not allowed to train AI. 
+The goal is to build a recommendation engine capable of suggesting similar appliances based on their specifications, features, and pricing, while providing a foundation for future personalized and context-aware recommendations.
 
 ---
 
-# Overview
+## Project Overview
 
-When shopping for appliances, customers often compare dozens of products that differ by price, size, fuel type, brand, finish, and available features.
-The goal of this project is to build a recommendation engine capable of suggesting similar products that satisfy the same customer needs.
+Modern e-commerce websites often recommend products that are similar to one currently being viewed. This project recreates that workflow using machine learning.
 
-Although inspired by the retail appliance industry, this project is intended as a portfolio piece to demonstrate practical data science and machine learning concepts, including:
+The current implementation focuses on kitchen ranges and follows a complete machine learning pipeline:
 
-- Synthetic data generation
-- Feature engineering
-- Recommendation systems
-- Similarity scoring
-- Data analysis with pandas
-- Machine learning workflows with scikit-learn
+1. Generate a realistic appliance dataset
+2. Preprocess and encode product attributes
+3. Convert products into numerical feature vectors
+4. Apply multiple recommendation algorithms
+5. Compare recommendation quality
 
----
-
-# Why This Project?
-
-Recommendation systems are everywhere—from Netflix and Spotify to Amazon. 
-Retail appliance recommendations present a different challenge because products must be compared across many structured attributes rather than user viewing history.
-
-This project explores how a recommendation engine could help customers:
-
-- Discover comparable products
-- Find better value alternatives
-- Compare premium and budget options
-- Narrow down large product catalogs
-- Support sales associates with intelligent recommendations
+Future versions will introduce context-aware recommendations that learn which product attributes matter most based on multiple user selections.
 
 ---
 
-# Features
-
-Current functionality includes:
-
-- Synthetic appliance data generation
-- Somewhat realistic relationships between product attributes
-- Brand tier modeling
-- Category-specific product features
-- Price generation based on product characteristics
-- Similar product recommendations
-- Data exploration using pandas
-
----
-
-# Dataset
-
-The dataset is generated entirely in Python using the Faker and random libraries together with custom generation logic. At the moment, the data just exists for ranges. 
-
-Each appliance contains attributes such as:
-
-- Category
-- Subcategory
-- Appliance type
-- Brand
-- Brand tier
-- Price
-- Width
-- Height
-- Depth
-- Color/Finish
-- Rating
-- Product features
-
-The relationships between these attributes are intentionally modeled to resemble realistic retail products.
-
-Examples include:
-
-- Premium brands generally include more features.
-- Larger appliances generally cost more.
-- Certain brands only manufacture specific appliance types.
-- Luxury products tend to occupy larger widths (e.g. 48" and 60" professional ranges).
-
-**Note:** All data is synthetic and does not represent actual Trail Appliances inventory.
-
----
-
-# Recommendation Strategy
-
-The recommendation engine compares appliances using structured product information.
-
-Some of the attributes considered include:
-
-- Product category
-- Appliance type
-- Price
-- Brand tier
-- Dimensions
-- Product features
-- Customer rating
-
-The objective is to recommend products that are genuinely similar while still providing meaningful alternatives for customers.
-
----
-
-# Tech Stack
-
-- Python
-- pandas
-- NumPy
-- Faker
-- scikit-learn
-- Jupyter Notebook
-
----
-
-# Project Structure
+## Machine Learning Pipeline
 
 ```
+Synthetic Product Generation
+            │
+            ▼
+      Data Cleaning
+            │
+            ▼
+ Feature Engineering
+            │
+            ▼
+Data Vectorization
+(Standard Scaling +
+One-Hot Encoding +
+MultiLabel Binarization)
+            │
+            ▼
+ Recommendation Models
+            │
+    ┌───────┼────────┐
+    ▼       ▼        ▼
+Cosine   Nearest   K-Means
+Similarity Neighbours Clustering
+```
 
-trail-suggestion-engine/
-│
+---
+
+## Current Recommendation Models
+
+### Cosine Similarity
+
+Treats every appliance as a feature vector and compares products using cosine similarity.
+
+Useful as a simple baseline recommendation algorithm.
+
+---
+
+### Nearest Neighbours
+
+Uses Scikit-Learn's `NearestNeighbors` implementation with cosine distance to efficiently retrieve the closest matching products.
+
+This approach scales better than manually comparing every product.
+
+---
+
+### K-Means Clustering
+
+Groups appliances into clusters of similar products.
+
+Although clustering is not currently used directly for recommendations, it helps understand the structure of the dataset and provides opportunities for future improvements.
+
+---
+
+## Data Generation
+
+Rather than scraping existing retailers, this project generates realistic appliance data using the Faker library together with custom generation logic.
+
+Each generated appliance contains information such as:
+
+* Brand
+* Brand tier
+* Appliance category
+* Fuel type
+* Finish
+* Dimensions
+* Burner count
+* Price
+* Rating
+* Feature list
+
+Approximately 25,000 realistic appliance records are generated for experimentation.
+
+---
+
+## Data Preprocessing
+
+Before applying machine learning algorithms, the dataset is transformed into a numerical representation.
+
+Current preprocessing includes:
+
+* Standard scaling of numerical features
+* One-hot encoding of categorical variables
+* Ordinal encoding of brand tiers
+* Multi-label binarization of product feature lists
+* Construction of a final feature matrix used by all recommendation models
+
+---
+
+## Project Structure
+
+```
+.
+├── appliance-recommendation-engine.ipynb   # Recommendation algorithms
+├── data-creation.ipynb                     # Synthetic dataset generation
+├── data-preprocessing.ipynb                # Feature engineering pipeline
+├── test-data-vectorization.py              # Vectorization testing
 ├── data/
-│   ├── generated/
-│   └── raw/
-│
-├── notebooks/
-│
-├── src/
-│   ├── data_generation/
-│   ├── recommendation/
-│   ├── preprocessing/
-│   └── utilities/
-│
-├── README.md
-└── requirements.txt
-
+│   ├── ranges.csv
+│   ├── final_data.csv
+│   ├── features_encoded.csv
+│   ├── encoded_categorical_values.csv
+│   ├── numeric_data_scaled.csv
+│   └── ...
+└── README.md
 ```
 
 ---
 
-# Problems 
-The main issue with this project is the actual evaulation of the model. There is no concrete way to really evalaute a recommendation engine execpt brute forcing it, or checking by hand.
-I tried to evaulate my models by having a llm generate me a test data set, where my "test" product had extremely similar counterparts. This allowed me to double check if my models that I 
-used were working correctly. 
+## Technologies
 
-
-# Future Improvements
-
-Planned enhancements include:
-
-- Additional appliance categories
-- Improved feature engineering
-- Explainable recommendations ("Why was this recommended?")
-- Streamlit web application
-- Model evaluation and recommendation metrics
-- Integration with real product data (where available)
+* Python
+* Pandas
+* NumPy
+* Scikit-Learn
+* Faker
+* Matplotlib
 
 ---
 
-# Learning Objectives
+## Future Improvements
 
-This project was built to strengthen practical experience with:
-
-- Python programming
-- Object-oriented design
-- pandas
-- NumPy
-- Feature engineering
-- Machine learning
-- Recommendation systems
-- Data cleaning
-- Synthetic data generation
-- Software project organization
+* Context-aware recommendations using multiple product selections
+* Dynamic feature weighting
+* SQLite product catalogue
+* Recommendation explanations ("Why this product?")
+* Principal Component Analysis (PCA) experiments
+* Interactive web interface
+* Hybrid recommendation algorithms
 
 ---
 
-# Inspiration
+## Current Status
 
-This project was inspired by the appliance retail industry and the challenge of helping customers navigate large product catalogs through intelligent product recommendations.
+This project is an active learning project focused on understanding the machine learning techniques behind recommendation systems.
 
-It demonstrates how data science techniques can be applied to a real-world retail problem while using entirely synthetic data for development.
+Current progress:
 
-
-
-
-
-```
-
-
+* ✅ Synthetic appliance dataset generation
+* ✅ Feature engineering pipeline
+* ✅ Data vectorization
+* ✅ Cosine similarity recommendations
+* ✅ Nearest Neighbour recommendations
+* ✅ K-Means clustering experiments
+* ⏳ Context-aware recommendation engine
+* ⏳ Personalized feature weighting
+* ⏳ Interactive application
