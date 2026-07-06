@@ -141,6 +141,12 @@ trail-suggestion-engine/
 
 ---
 
+# Problems 
+The main issue with this project is the actual evaulation of the model. There is no concrete way to really evalaute a recommendation engine execpt brute forcing it, or checking by hand.
+I tried to evaulate my models by having a llm generate me a test data set, where my "test" product had extremely similar counterparts. This allowed me to double check if my models that I 
+used were working correctly. 
+
+
 # Future Improvements
 
 Planned enhancements include:
@@ -176,4 +182,11 @@ This project was built to strengthen practical experience with:
 This project was inspired by the appliance retail industry and the challenge of helping customers navigate large product catalogs through intelligent product recommendations.
 
 It demonstrates how data science techniques can be applied to a real-world retail problem while using entirely synthetic data for development.
+
+
+
+
+
 ```
+
+

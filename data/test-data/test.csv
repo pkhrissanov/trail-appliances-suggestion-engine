@@ -1,0 +1,14 @@
+product_id,category,range_type,brand,brand_tier,width_inches,height_inches,depth_inches,burners,finish,features,price,rating
+TEST-GAS-ANCHOR,range,gas,GE,mainstream,30,36,28,5,Stainless Steel,"['Air Fry', 'Convection', 'Self Clean', 'WiFi']",1600,4.5
+TEST-GAS-SIMILAR-1,range,gas,GE,mainstream,30,36,28,5,Stainless Steel,"['Air Fry', 'Convection', 'Self Clean', 'WiFi']",1620,4.6
+TEST-GAS-SIMILAR-2,range,gas,LG,mainstream,30,36,29,5,Stainless Steel,"['Air Fry', 'Convection', 'Self Clean']",1550,4.4
+TEST-GAS-SIMILAR-3,range,gas,Samsung,mainstream,30,37,28,5,Black Stainless,"['Air Fry', 'Convection', 'Self Clean', 'WiFi']",1675,4.3
+TEST-GAS-DIFFERENT,range,electric,Frigidaire,budget,24,36,26,4,White,['Steam Clean'],700,3.8
+TEST-IND-ANCHOR,range,induction,Bosch,premium,30,36,28,4,Stainless Steel,"['Convection', 'Self Clean', 'WiFi', 'Smart enabled', 'Steam Clean']",2850,4.8
+TEST-IND-SIMILAR-1,range,induction,Bosch,premium,30,36,28,4,Stainless Steel,"['Convection', 'Self Clean', 'WiFi', 'Smart enabled', 'Steam Clean']",2890,4.9
+TEST-IND-SIMILAR-2,range,induction,Cafe,premium,30,36,29,4,Stainless Steel,"['Convection', 'Self Clean', 'WiFi', 'Steam Clean']",2790,4.7
+TEST-IND-DIFFERENT,range,gas,Whirlpool,budget,30,36,27,5,Black,['Griddle'],1150,4
+TEST-LUX-ANCHOR,range,dual fuel,Wolf,luxury,48,36,29,6,Stainless Steel,"['Air Fry', 'Convection', 'Self Clean', 'Griddle', 'WiFi', 'Steam Clean', 'Smart enabled']",8400,4.9
+TEST-LUX-SIMILAR-1,range,dual fuel,Thermador,luxury,48,36,29,6,Stainless Steel,"['Air Fry', 'Convection', 'Self Clean', 'Griddle', 'WiFi', 'Steam Clean', 'Smart enabled']",8500,4.8
+TEST-LUX-SIMILAR-2,range,dual fuel,Monogram,luxury,48,36,30,6,Stainless Steel,"['Air Fry', 'Convection', 'Self Clean', 'Griddle', 'WiFi', 'Steam Clean']",8250,4.8
+TEST-LUX-DIFFERENT,range,electric,GE,mainstream,30,36,27,4,White,"['Convection', 'Self Clean']",1200,4.1
